@@ -42,5 +42,17 @@ pub fn enumerate_serial_ports() -> Result<Vec<String>> {
 /// Lists the serial ports that are connected to the computer
 #[cfg(unix)]
 pub fn enumerate_serial_ports() -> Result<Vec<String>> {
-    Ok(vec!["Hello".into(), "world".into()])
+    use std::fs;
+    let device_directory = fs::read_dir("/dev/serial/by-id").chain_err(|| "/dev/serial not found")?;
+
+    let mut devices = vec![];
+    for entry in device_directory {
+        let path = entry.chain_err(|| "Directory entry could not be read")?.path();
+        let path_string = match path.to_str() {
+            Some(path_string) => path_string.into(),
+            None => return Err(Error::from("Path could not be convert to string")),
+        };
+        devices.push(path_string);
+    }
+    Ok(devices)
 }
