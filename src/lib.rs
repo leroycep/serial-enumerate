@@ -1,4 +1,12 @@
 
+//! This crate provides an easy way to enumerate serial ports.
+//!
+//! ```
+//! for device in serial_enumerate::enumerate_serial_ports().unwrap() {
+//!     println!("{}", device);
+//! }
+//!
+
 #[macro_use]
 extern crate error_chain;
 extern crate winreg;
@@ -7,6 +15,8 @@ pub mod errors;
 
 use errors::*;
 
+/// Lists the serial ports that are connected to the computer
+#[cfg(windows)]
 pub fn enumerate_serial_ports() -> Result<Vec<String>> {
     use winreg::RegKey;
     use winreg::enums::{HKEY_LOCAL_MACHINE, KEY_READ};
