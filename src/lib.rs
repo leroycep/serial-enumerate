@@ -47,10 +47,13 @@ pub fn enumerate_serial_ports() -> Result<Vec<String>> {
 
     let mut devices = vec![];
     for entry in device_directory {
-        let path = entry.chain_err(|| "Directory entry could not be read")?.path();
+        let path = entry.chain_err(|| "Directory entry could not be read")?
+            .path()
+            .canonicalize()
+            .chain_err(|| "Could not get absolute path of serial port")?;
         let path_string = match path.to_str() {
             Some(path_string) => path_string.into(),
-            None => return Err(Error::from("Path could not be convert to string")),
+            None => return Err(Error::from("Path could not be converted to string")),
         };
         devices.push(path_string);
     }
