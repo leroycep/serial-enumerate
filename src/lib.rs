@@ -10,6 +10,8 @@
 
 #[macro_use]
 extern crate error_chain;
+
+#[cfg(windows)]
 extern crate winreg;
 
 pub mod errors;
@@ -35,4 +37,10 @@ pub fn enumerate_serial_ports() -> Result<Vec<String>> {
     }
 
     Ok(devices)
+}
+
+/// Lists the serial ports that are connected to the computer
+#[cfg(unix)]
+pub fn enumerate_serial_ports() -> Result<Vec<String>> {
+    Ok(vec!["Hello".into(), "world".into()])
 }
