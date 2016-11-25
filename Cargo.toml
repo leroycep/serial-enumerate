@@ -8,5 +8,3 @@ error-chain = "0.5"
 
 [target.'cfg(windows)'.dependencies]
 winreg = "0.4"
-
-[target.'cfg(unix)'.dependencies]
