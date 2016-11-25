@@ -11,7 +11,7 @@
 #[macro_use]
 extern crate error_chain;
 
-#[cfg(windows)]
+#[cfg(target_os = "windows")]
 extern crate winreg;
 
 pub mod errors;
@@ -19,7 +19,7 @@ pub mod errors;
 use errors::*;
 
 /// Lists the serial ports that are connected to the computer
-#[cfg(windows)]
+#[cfg(target_os = "windows")]
 pub fn enumerate_serial_ports() -> Result<Vec<String>> {
     use winreg::RegKey;
     use winreg::enums::{HKEY_LOCAL_MACHINE, KEY_READ};
@@ -40,7 +40,7 @@ pub fn enumerate_serial_ports() -> Result<Vec<String>> {
 }
 
 /// Lists the serial ports that are connected to the computer
-#[cfg(unix)]
+#[cfg(target_os = "linux")]
 pub fn enumerate_serial_ports() -> Result<Vec<String>> {
     use std::fs;
     let device_directory = fs::read_dir("/dev/serial/by-id").chain_err(|| "/dev/serial not found")?;
