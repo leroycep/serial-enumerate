@@ -5,6 +5,7 @@
 //! for device in serial_enumerate::enumerate_serial_ports().unwrap() {
 //!     println!("{}", device);
 //! }
+//! ```
 //!
 
 #[macro_use]
