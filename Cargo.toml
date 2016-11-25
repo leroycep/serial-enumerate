@@ -5,3 +5,4 @@ authors = ["geemili <minergeemili@gmail.com>"]
 
 [dependencies]
 winreg = "0.4"
+error-chain = "0.5"
