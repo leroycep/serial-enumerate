@@ -7,7 +7,7 @@
 Add the following to your `Cargo.toml`.
 
 ```
-serial-enumerate = {git = "https://github.com/Geemili/serial-enumerate.git"}
+serial-enumerate = "0.1.0"
 ```
 
 ## Example
