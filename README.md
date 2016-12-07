@@ -7,7 +7,7 @@
 Add the following to your `Cargo.toml`.
 
 ```
-serial-enumerate = "0.1.0"
+serial_enumerate = "0.1.0"
 ```
 
 ## Example
