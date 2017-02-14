@@ -1,3 +1,5 @@
+This project is project is no longer being maintained. The [serialport-rs](https://gitlab.com/susurrus/serialport-rs) library offers functionality to interact with serialports and can also list available ports. Use it instead.
+
 # Serial Enumerate
 
 `serial-enumerate` provides an easy way to enumerate serial ports on windows and unix operating systems.
